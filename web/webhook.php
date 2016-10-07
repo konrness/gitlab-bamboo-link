@@ -7,7 +7,7 @@ $config = include '../app/config.php';
 $client_token = $_GET['token'] ?: null;
 $client_ip    = $_SERVER['REMOTE_ADDR'];
 
-$log = fopen('../log/webhook.log', 'a');
+$log = fopen(__DIR__ . '/../log/webhook.log', 'a');
 fwrite($log, '['.date("Y-m-d H:i:s").'] ['.$client_ip.']'.PHP_EOL);
 
 // verify token
@@ -19,7 +19,7 @@ if ($client_token !== $config['access_token'])
 }
 
 // verify IP
-if ($client_ip !== $config['client_ip'])
+if (isset($config['client_ip']) && $client_ip !== $config['client_ip'])
 {
     echo "invalid ip";
     fwrite($log, "Invalid ip [{$client_ip}]".PHP_EOL);
@@ -34,7 +34,6 @@ $data = json_decode($json, true);
 
 fwrite($log, "Event Data: $json\n");
 
-
 switch ($event) {
     case "Merge Request Hook":
         if ($data['object_attributes']['action'] == 'open') {
@@ -47,3 +46,6 @@ switch ($event) {
 
         break;
 }
+
+echo 'done';
+fclose($log);
