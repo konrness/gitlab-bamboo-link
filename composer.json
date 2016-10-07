@@ -1,0 +1,21 @@
+{
+  "name": "petfinder/ci-link",
+  "authors": [
+    {
+      "name": "Konr Ness",
+      "email": "kness@nerdery.com"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit" : "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "RandomExt\\": "src/PetfinderCi/"
+    }
+  },
+  "require": {
+    "peterjmit/bamboo-api-client": "^0.1",
+    "m4tthumphrey/php-gitlab-api": "^7.15"
+  }
+}
