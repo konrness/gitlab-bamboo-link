@@ -46,10 +46,12 @@ if (! $mergeRequest) {
     exit();
 }
 
-echo "Found Merge Request: " . $mergeRequest->title . PHP_EOL;
+fwrite($log, "Found Merge Request: " . $mergeRequest->title . PHP_EOL);
+
+$commentBody = "Bamboo Build: $resultsUrl";
 
 /** @var Note $comment */
-$comment = $mergeRequest->addComment("Bamboo Build: $resultsUrl");
+$comment = $mergeRequest->addComment($commentBody);
 
-echo 'done';
+fwrite($log, "Added comment: $commentBody \n");
 fclose($log);
