@@ -38,7 +38,7 @@ fwrite($log, "Build Key: $buildKey\n");
 fwrite($log, "Branch: $branch\n");
 fwrite($log, "Results URL: $resultsUrl\n");
 
-$client = new \GitLabLink\Client();
+$client = new \GitLabLink\Client($config['gitLabAuthToken']);
 
 $mergeRequest = $client->findMergeRequestByBranch($branch, 2);
 

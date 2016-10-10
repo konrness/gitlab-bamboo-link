@@ -20,7 +20,7 @@ class Client
      */
     private $project;
 
-    public function __construct()
+    public function __construct($authToken)
     {
         // load all GitLab Merge Requests
         $this->client = new \Gitlab\Client('https://git.petfinder.com/api/v3/');
@@ -28,7 +28,7 @@ class Client
         // add logger
         $this->client->getHttpClient()->addListener(new LogListener(), 10);
 
-        $this->client->authenticate('Lam6RojK7EnyDMXxeTGt', \Gitlab\Client::AUTH_URL_TOKEN);
+        $this->client->authenticate($authToken, \Gitlab\Client::AUTH_URL_TOKEN);
 
         /** @var Projects $projectApi */
         $projectApi = $this->client->api('projects');
