@@ -42,13 +42,8 @@ class Client
      * @param string $branch
      * @return MergeRequest
      */
-    public function findMergeRequestByBranch($branch, $projectId)
+    public function findMergeRequestByBranch($branch)
     {
-        /** @var MergeRequests $mergeRequestsApi */
-//        $mergeRequestsApi = $this->client->api('merge_requests');
-//
-//        $mergeRequests = $mergeRequestsApi->getList($projectId, MergeRequests::STATE_OPENED);
-
         $mergeRequests = $this->project->mergeRequests(1, 100, MergeRequests::STATE_OPENED);
 
         foreach ($mergeRequests as $mergeRequest) {
