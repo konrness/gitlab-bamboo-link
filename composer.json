@@ -11,11 +11,17 @@
   },
   "autoload": {
     "psr-4": {
-      "RandomExt\\": "src/PetfinderCi/"
+      "GitLabLink\\": "src/GitLabLink/"
     }
   },
   "require": {
     "peterjmit/bamboo-api-client": "^0.1",
-    "m4tthumphrey/php-gitlab-api": "^7.15"
-  }
+    "m4tthumphrey/php-gitlab-api": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/konrness/php-gitlab-api.git"
+    }
+  ]
 }
