@@ -42,7 +42,9 @@ $client = new \GitLabLink\Client($config['gitLabBaseUrl'], $config['gitLabAuthTo
 $mergeRequest = $client->findMergeRequestByBranch($branch);
 
 if (! $mergeRequest) {
-    echo "Merge request not found.";
+    $message = "Merge request not found.\n\n";
+    fwrite($log, $message);
+    echo $message;
     exit();
 }
 
@@ -53,5 +55,5 @@ $commentBody = "Bamboo Build: $resultsUrl";
 /** @var Note $comment */
 $comment = $mergeRequest->addComment($commentBody);
 
-fwrite($log, "Added comment: $commentBody \n");
+fwrite($log, "Added comment: $commentBody \n\n");
 fclose($log);
