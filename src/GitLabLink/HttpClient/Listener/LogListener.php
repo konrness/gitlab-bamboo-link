@@ -3,7 +3,6 @@
 use Buzz\Listener\ListenerInterface;
 use Buzz\Message\MessageInterface;
 use Buzz\Message\RequestInterface;
-use Gitlab\HttpClient\Message\FormRequest;
 
 class LogListener implements ListenerInterface
 {
@@ -12,11 +11,7 @@ class LogListener implements ListenerInterface
      */
     public function preSend(RequestInterface $request)
     {
-        // json encode if POST
-        if ($request->getMethod() == RequestInterface::METHOD_POST) {
-            //echo "Adding content-type Header\n";
-            //$request->addHeader("Content-Type: application/x-www-form-urlencoded");
-        }
+
     }
 
     /**
@@ -33,6 +28,5 @@ class LogListener implements ListenerInterface
         echo "=== Headers:" . print_r($response->getHeaders(), true) . "\n";
         echo "=== Content:" . print_r($response->getContent(), true) . "\n";
 
-        //var_dump($response);
     }
 }

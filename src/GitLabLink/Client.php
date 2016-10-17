@@ -20,13 +20,15 @@ class Client
      */
     private $project;
 
-    public function __construct($baseUrl, $authToken, $projectId)
+    public function __construct($baseUrl, $authToken, $projectId, $debug = false)
     {
         // load all GitLab Merge Requests
         $this->client = new \Gitlab\Client($baseUrl);
 
         // add logger
-        $this->client->getHttpClient()->addListener(new LogListener(), 10);
+        if ($debug) {
+            $this->client->getHttpClient()->addListener(new LogListener(), 10);
+        }
 
         $this->client->authenticate($authToken, \Gitlab\Client::AUTH_URL_TOKEN);
 
