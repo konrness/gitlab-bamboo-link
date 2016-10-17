@@ -11,7 +11,6 @@ $client_ip    = $_SERVER['REMOTE_ADDR'];
 
 $log = fopen(__DIR__ . '/../log/webhook.log', 'a');
 fwrite($log, '['.date("Y-m-d H:i:s").'] ['.$client_ip.']'.PHP_EOL);
-fwrite($log, print_r($_GET, true) . PHP_EOL);
 
 // verify token
 if ($client_token !== $config['access_token'])
